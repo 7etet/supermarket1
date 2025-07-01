@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لغز اليوم 🧠</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffcdd2, #fff176);
+      height: 100vh;
+      position: relative;
+    }
+
+    .puzzle-box {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      max-width: 500px;
+      z-index: 10;
+      position: relative;
+      margin: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      animation: pop 0.5s ease-in-out;
+    }
+
+    h1 {
+      color: #d81b60;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .puzzle-text {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .float-word {
+      position: absolute;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #d81b60;
+      opacity: 0.7;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- صندوق اللغز -->
+  <div class="puzzle-box">
+    <h1>🎁 لغز اليوم من حتة جبنة ماركت</h1>
+    <div class="puzzle-text" id="puzzleText"></div>
+    <div class="note">حل اللغز، وتعالى قولنا الإجابة أو ابعتهالنا واتساب وخد هديتك 🎉</div>
+    <div class="note">01050585959 - 01200024290</div>
+  </div>
+
+  <!-- سكريبت الكلمات الطائرة -->
+  <script>
+    const words = [
+      "💸 خصومات", "🧀 وفر أكتر", "🔥 عروض نار", "🛵 أسرع توصيل", "🛍️ كل حاجة عندنا",
+      "🍞 طازج يوم بيوم", "🧨 أسعار مجنونة", "⚡ الحق العرض", "🧃 متفوتش الفرصة",
+      "🎯 وفر واشتري", "📦 عروض بالجملة", "🌟 دايمًا أوفر", "🍗 طازة وساخنة", "🥤 على كيفك",
+      "🧀 جبنة سوبر", "🍫 حلا وعسل", "🎉 تسوق وانبسط", "🥚 كل يوم طازة", "🍖 لِمة العيلة"
+    ];
+
+    // توليد عدد معين من الكلمات المتحركة
+    const numberOfWords = 25;
+    for (let i = 0; i < numberOfWords; i++) {
+      const word = document.createElement('div');
+      word.className = 'float-word';
+      word.innerText = words[Math.floor(Math.random() * words.length)];
+
+      // وضع عشوائي أولي
+      word.style.top = Math.random() * window.innerHeight + 'px';
+      word.style.left = Math.random() * window.innerWidth + 'px';
+
+      // إضافة للصفحة
+      document.body.appendChild(word);
+
+      // حركة bounce
+      let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 2);
+      let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 2);
+
+      function move() {
+        const rect = word.getBoundingClientRect();
+        let x = rect.left + dx;
+        let y = rect.top + dy;
+
+        if (x <= 0 || x + rect.width >= window.innerWidth) dx *= -1;
+        if (y <= 0 || y + rect.height >= window.innerHeight) dy *= -1;
+
+        word.style.left = (rect.left + dx) + 'px';
+        word.style.top = (rect.top + dy) + 'px';
+
+        requestAnimationFrame(move);
+      }
+
+      move();
+    }
+
+    // اللغز العشوائي
+    const puzzles = [
+      "أنا شيء، لو شلت أول حرف بقيت ألم، ولو شلت الثاني بقيت شيء يُرى، ولو شلت الثالث بقيت شيء يُسمع. أنا مين؟",
+      "شيء تمشي عليه وتمسحه، بس عمرك ما تقدر تمسحه بالكامل. إيه هو؟",
+      "حاجة لما تزيد تقل، ولما تقل تزيد. إيه هي؟",
+      "له رقبة ومافيهوش راس، يلبسك من غير إيدين. إيه هو؟",
+      "بيت من غير باب، وساكنه دايمًا في الضباب. إيه هو؟",
+      "ما هو الشيء اللي كل ما طال يقصر؟",
+      "فيه منه أبيض، فيه منه أسود، بيتكلم من غير صوت. إيه هو؟",
+      "شيء موجود في كل بيت، يبدأ بحرف الكاف، دايمًا بيضحك وبيسكت. إيه هو؟",
+      "ما هو الشيء الذي يسير بلا رجلين، ولا يدخل إلا بالأذنين؟",
+      "حاجة بتشوفها وما تقدرش تلمسها، ولما تلمسها تختفي. إيه هي؟",
+      "أنا في الليل أظهر، وفي النهار أختفي، ولا يمكن تلمسني. إيه أنا؟",
+      "إيه اللي ليه عين بس مش بيشوف؟",
+      "ما هو الشيء اللي دايمًا جاي وعمرك ما تلحقه؟",
+      "فيه حاجه بتكلمك بس مش بتفتح بقها، وإنت دايمًا تسمعها. إيه هي؟",
+      "شيء إذا دخل الماء لا يبتل. إيه هو؟"
+    ];
+
+    document.getElementById('puzzleText').innerText = puzzles[Math.floor(Math.random() * puzzles.length)];
+  </script>
+</body>
+</html>
