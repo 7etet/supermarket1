@@ -13,6 +13,10 @@
       background: linear-gradient(135deg, #ffcdd2, #fff176);
       height: 100vh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
 
     .puzzle-box {
@@ -21,24 +25,20 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       padding: 2rem;
       max-width: 90%;
-      width: 360px;
+      width: 340px;
       z-index: 10;
-      position: relative;
-      margin: auto;
-      top: 50%;
-      transform: translateY(-50%);
       text-align: center;
       animation: pop 0.5s ease-in-out;
     }
 
     h1 {
       color: #d81b60;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       margin-bottom: 1rem;
     }
 
     .puzzle-text {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 1.5rem;
       color: #444;
     }
@@ -59,9 +59,7 @@
     }
 
     .footer {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
+      margin-top: 20px;
       text-align: center;
       z-index: 5;
     }
@@ -69,11 +67,12 @@
     .footer-box {
       display: inline-block;
       background-color: #fff;
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      font-size: 0.9rem;
-      color: #666;
+      font-size: 0.85rem;
+      color: #333;
+      direction: rtl;
     }
 
     @keyframes pop {
@@ -83,10 +82,10 @@
 
     .float-word {
       position: absolute;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #d81b60;
-      opacity: 0.6;
+      opacity: 0.5;
       white-space: nowrap;
       pointer-events: none;
       z-index: 1;
@@ -111,8 +110,8 @@
       word.style.top = Math.random() * window.innerHeight + 'px';
       word.style.left = Math.random() * window.innerWidth + 'px';
       document.body.appendChild(word);
-      let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.5);
-      let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.5);
+      let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.2);
+      let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.2);
       function move() {
         const rect = word.getBoundingClientRect();
         let x = rect.left + dx;
@@ -132,8 +131,7 @@
     <h1>🎁 لغز اليوم من حتة جبنة ماركت</h1>
     <div class="puzzle-text" id="puzzleText"></div>
     <div class="note">حل اللغز، وابعتلنا الإجابة على الواتساب 👇</div>
-    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=201050585959&text=Link%3A%0Ahttps%3A%2F%2Ffb.me%2Fj2q4Rn4SC%0A%0AHello%21+Can+I+get+more+info+on+this%3F" target="_blank">📲 01050585959</a>
-    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=201200024290" target="_blank">📲 01200024290</a>
+    <a class="whatsapp-link" href="https://wa.me/201200024290" target="_blank">📲 مراسلة 7etet Gebna عبر واتساب</a>
   </div>
 
   <!-- التذييل -->
