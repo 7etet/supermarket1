@@ -63,9 +63,17 @@
       bottom: 10px;
       width: 100%;
       text-align: center;
+      z-index: 5;
+    }
+
+    .footer-box {
+      display: inline-block;
+      background-color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       font-size: 0.9rem;
       color: #666;
-      z-index: 5;
     }
 
     @keyframes pop {
@@ -73,25 +81,66 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* لو عايز تضيف خلفية متحركة للكلمات الطايرة ممكن نكمل بعدها */
+    .float-word {
+      position: absolute;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d81b60;
+      opacity: 0.6;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
+
+  <!-- كلمات طايرة -->
+  <script>
+    const words = [
+      "💸 خصومات", "🧀 وفر أكتر", "🔥 عروض نار", "🛵 أسرع توصيل", "🛍️ كل حاجة عندنا",
+      "🍞 طازج يوم بيوم", "🧨 أسعار مجنونة", "⚡ الحق العرض", "🧃 متفوتش الفرصة",
+      "🎯 وفر واشتري", "📦 عروض بالجملة", "🌟 دايمًا أوفر", "🍗 طازة وساخنة",
+      "🎉 تسوق وانبسط", "🥚 كل يوم طازة", "🍖 لِمة العيلة"
+    ];
+    const numberOfWords = 20;
+    for (let i = 0; i < numberOfWords; i++) {
+      const word = document.createElement('div');
+      word.className = 'float-word';
+      word.innerText = words[Math.floor(Math.random() * words.length)];
+      word.style.top = Math.random() * window.innerHeight + 'px';
+      word.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(word);
+      let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.5);
+      let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.5);
+      function move() {
+        const rect = word.getBoundingClientRect();
+        let x = rect.left + dx;
+        let y = rect.top + dy;
+        if (x <= 0 || x + rect.width >= window.innerWidth) dx *= -1;
+        if (y <= 0 || y + rect.height >= window.innerHeight) dy *= -1;
+        word.style.left = (rect.left + dx) + 'px';
+        word.style.top = (rect.top + dy) + 'px';
+        requestAnimationFrame(move);
+      }
+      move();
+    }
+  </script>
 
   <!-- صندوق اللغز -->
   <div class="puzzle-box">
     <h1>🎁 لغز اليوم من حتة جبنة ماركت</h1>
     <div class="puzzle-text" id="puzzleText"></div>
     <div class="note">حل اللغز، وابعتلنا الإجابة على الواتساب 👇</div>
-
-    <!-- روابط واتساب -->
     <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=201050585959&text=Link%3A%0Ahttps%3A%2F%2Ffb.me%2Fj2q4Rn4SC%0A%0AHello%21+Can+I+get+more+info+on+this%3F" target="_blank">📲 01050585959</a>
     <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=201200024290" target="_blank">📲 01200024290</a>
   </div>
 
   <!-- التذييل -->
   <div class="footer">
-    فكرة وتنفيذ شركة Thinker للتسويق الإلكتروني – 01040007127
+    <div class="footer-box">
+      فكرة وتنفيذ شركة Thinker للتسويق الإلكتروني – 01040007127
+    </div>
   </div>
 
   <!-- سكريبت اللغز -->
