@@ -23,9 +23,9 @@
       background: white;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      padding: 2rem;
-      max-width: 90%;
-      width: 340px;
+      padding: 1.5rem;
+      max-width: 95%;
+      width: 300px;
       z-index: 10;
       text-align: center;
       animation: pop 0.5s ease-in-out;
@@ -33,12 +33,12 @@
 
     h1 {
       color: #d81b60;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 1rem;
     }
 
     .puzzle-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       margin-bottom: 1.5rem;
       color: #444;
     }
@@ -82,13 +82,14 @@
 
     .float-word {
       position: absolute;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
       color: #d81b60;
       opacity: 0.5;
       white-space: nowrap;
       pointer-events: none;
       z-index: 1;
+      transition: transform 1s linear;
     }
   </style>
 </head>
@@ -100,9 +101,10 @@
       "💸 خصومات", "🧀 وفر أكتر", "🔥 عروض نار", "🛵 أسرع توصيل", "🛍️ كل حاجة عندنا",
       "🍞 طازج يوم بيوم", "🧨 أسعار مجنونة", "⚡ الحق العرض", "🧃 متفوتش الفرصة",
       "🎯 وفر واشتري", "📦 عروض بالجملة", "🌟 دايمًا أوفر", "🍗 طازة وساخنة",
-      "🎉 تسوق وانبسط", "🥚 كل يوم طازة", "🍖 لِمة العيلة"
+      "🎉 تسوق وانبسط", "🥚 كل يوم طازة", "🍖 لِمة العيلة", "🥬 خضار طازة",
+      "🥫 كل حاجة متوفرة", "🧼 عروض التنظيف", "🍫 خصومات الحلويات"
     ];
-    const numberOfWords = 20;
+    const numberOfWords = 25;
     for (let i = 0; i < numberOfWords; i++) {
       const word = document.createElement('div');
       word.className = 'float-word';
@@ -110,16 +112,21 @@
       word.style.top = Math.random() * window.innerHeight + 'px';
       word.style.left = Math.random() * window.innerWidth + 'px';
       document.body.appendChild(word);
-      let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.2);
-      let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 1.2);
+
+      let dx = (Math.random() < 0.5 ? -1 : 1) * (0.5 + Math.random());
+      let dy = (Math.random() < 0.5 ? -1 : 1) * (0.5 + Math.random());
+
       function move() {
         const rect = word.getBoundingClientRect();
         let x = rect.left + dx;
         let y = rect.top + dy;
+
         if (x <= 0 || x + rect.width >= window.innerWidth) dx *= -1;
         if (y <= 0 || y + rect.height >= window.innerHeight) dy *= -1;
+
         word.style.left = (rect.left + dx) + 'px';
         word.style.top = (rect.top + dy) + 'px';
+
         requestAnimationFrame(move);
       }
       move();
